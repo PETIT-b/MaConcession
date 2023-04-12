@@ -54,6 +54,16 @@ Vehicule >> moteur: anObject [
 ]
 
 { #category : #accessing }
+Vehicule >> nbMaxRoues [
+	^ nbMaxRoues
+]
+
+{ #category : #accessing }
+Vehicule >> nbMaxRoues: anInteger [ 
+	nbMaxRoues := anInteger
+]
+
+{ #category : #accessing }
 Vehicule >> prix [
 
 	^ prix

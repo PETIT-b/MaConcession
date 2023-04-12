@@ -1,11 +1,22 @@
 Class {
-	#name : #VoitureTest,
+	#name : #VehiculeTest,
 	#superclass : #TestCase,
 	#category : #'MaConcession-Tests'
 }
 
 { #category : #tests }
-VoitureTest >> testAddRoueRemRoue [
+VehiculeTest >> testAddRoue [
+			
+	| vehic r1 |
+	vehic:=Vehicule new.
+	self assert:(vehic roues size=0).
+	r1:=Roue new.
+	vehic addRoue:r1.
+	self assert:(vehic roues size=1).
+]
+
+{ #category : #tests }
+VehiculeTest >> testAddRoueRemRoue [
 			
 	| v r1 r2 r3 r4 r1Bis r2Bis r3Bis r4Bis |
 	v:=Vehicule new.
@@ -36,7 +47,7 @@ VoitureTest >> testAddRoueRemRoue [
 ]
 
 { #category : #tests }
-VoitureTest >> testGetRoue [
+VehiculeTest >> testGetRoue [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 			
