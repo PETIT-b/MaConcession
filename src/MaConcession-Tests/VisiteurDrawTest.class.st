@@ -29,7 +29,7 @@ VisiteurDrawTest >> testVisitRoue [
 { #category : #tests }
 VisiteurDrawTest >> testVisitVehicule [ 
 			
-	| visiteurD vehi r |
+	| visiteurD vehi r m |
 	visiteurD := VisiteurDraw new.
 	vehi:=Vehicule new.
 	vehi prix:7899;couleur:Color red ;nbMaxRoues:4.
@@ -42,5 +42,10 @@ VisiteurDrawTest >> testVisitVehicule [
 	vehi addRoue:r.
 	r:=Roue new. r diametre:170;prix:67.
 	vehi addRoue:r.
+	
+	m:=Moteur new.
+	m cylindree: 1400; puissance:75; prix:750.
+	vehi moteur:m.
+	
 	vehi accept:visiteurD.
 ]

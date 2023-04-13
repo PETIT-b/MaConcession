@@ -19,14 +19,25 @@ VehicInterface >> canvas [
 
 { #category : #'as yet unclassified' }
 VehicInterface >> dessiner2Roues:roues [	
-	| mOR pos |
+	| mOR pos ima |
 	"MorphOuvreRoue"
+	
+	"créer une forme pour représenter une roue"
+	ima := FormCanvas extent: 20@60.
+	ima drawRectangle:(Rectangle point: (0@0) point: (20)@(60))
+		color: Color black
+		borderWidth: 1
+		borderColor: Color black. 
+		
 	pos:=1.
 	( pos <= (visiteur roues size ) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur; element:(visiteur roues at:pos).
-	fenetre addMorph:(
+		"mOR  color:Color black; visiteur:visiteur; element:(visiteur roues at:pos)." "ancienne méthode quand MorphOuvreMorph était une sous classe de Morph"
+		
+		mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
+		
+		fenetre addMorph:(
 		mOR position: (
 			(width/2)-(mOR width/2)"centrer horizontalement"
 		)@(
@@ -38,8 +49,10 @@ VehicInterface >> dessiner2Roues:roues [
 	pos:=2.
 	( pos <= (visiteur roues size) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur;element:(visiteur roues at:pos).
+	
+	mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
+		
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)-(mOR width/2)"centrer horizontalement"
@@ -52,13 +65,24 @@ VehicInterface >> dessiner2Roues:roues [
 
 { #category : #'as yet unclassified' }
 VehicInterface >> dessiner4Roues:roues [	
-	| mOR pos |
+	| mOR pos ima |
 	"MorphOuvreRoue"
+	
+	"créer une forme pour représenter une roue"
+	ima := FormCanvas extent: 20@60.
+	ima drawRectangle:(Rectangle point: (0@0) point: (20)@(60))
+		color: Color black
+		borderWidth: 1
+		borderColor: Color black. 
+		
 	pos:=1.
 	( pos <= (visiteur roues size ) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur;element:(visiteur roues at:1).
+	"mOR:=MorphOuvreMorph new.
+	mOR color:Color black; visiteur:visiteur;element:(visiteur roues at:1)."
+	
+	mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)-(morphC width/2)-(mOR width)"a gauche du morph central"
@@ -71,8 +95,8 @@ VehicInterface >> dessiner4Roues:roues [
 	pos:=2.
 	( pos <= (visiteur roues size ) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur;element:(visiteur roues at:2).
+	mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)+(morphC width/2)"a droite du morph central"
@@ -85,8 +109,8 @@ VehicInterface >> dessiner4Roues:roues [
 	pos:=3.
 	( pos <= (visiteur roues size ) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur;element:(visiteur roues at:3).
+	mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)-(morphC width/2)-(mOR width)"a gauche du morph central"
@@ -100,8 +124,8 @@ VehicInterface >> dessiner4Roues:roues [
 	pos:=4.
 	( pos <= (visiteur roues size ) )
 	ifTrue:[
-	mOR:=MorphOuvreMorph new.
-	mOR color:Color black; visiteur:visiteur; element:(visiteur roues at:4).
+	mOR:=MorphOuvreMorph withForm: (ima form) .
+		mOR visiteur:visiteur; element:(visiteur roues at:pos).
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)+(morphC width/2)"a droite du morph central"
@@ -113,8 +137,33 @@ VehicInterface >> dessiner4Roues:roues [
 ]
 
 { #category : #'as yet unclassified' }
-VehicInterface >> dessinerRoues:roues largeurC:largeurC hauteurC:hauteurC [
-	" TO DO : faire des tests à partir de visiteur nbMaxRoue pour connaître le type du véhicule"
+VehicInterface >> dessinerMoteur:moteur [	
+	| mOR  |
+	"MorphOuvreRoue"
+	
+	moteur
+	ifNotNil:[
+		mOR:=MorphOuvreMorph withForm: (ImageReadWriter formFromFileNamed:
+'/home/fireboy/Images/Lien vers moteur.png') .
+	mOR color:Color red ; visiteur:visiteur;element:moteur.
+	fenetre addMorph:(
+		mOR position: (
+			(width/2)-(mOR width/2)"centre"
+		)@(
+			(height/2)-(morphC height/2)+2 "a l'avant du canvas central"
+		)
+	)
+		
+		
+		]
+	
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> dessinerRoues:roues [
+	"faire des tests à partir de visiteur nbMaxRoue pour connaître le type du véhicule"
 	(visiteur nbMaxRoues=2)
 	ifTrue: [
 		self dessiner2Roues:roues
@@ -134,7 +183,7 @@ VehicInterface >> genererCanvas [
 	
 	
 	widthC:=100.
-	heightC:=150.
+	heightC:=180.
 	
 	canvas := FormCanvas extent: widthC@heightC.
 	"rectW:=50. rectH:=100."
@@ -175,7 +224,8 @@ VehicInterface >> ouvrirFenetre [
 		)
 	) .
 	
-	self dessinerRoues:(visiteur roues)largeurC:(morphC width)hauteurC:(morphC height).
+	self dessinerRoues:(visiteur roues).
+	self dessinerMoteur:(visiteur moteur).
 	fenetre openInWorld
 	
 ]

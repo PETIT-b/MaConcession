@@ -32,7 +32,6 @@ VehicInterfaceTest >> testDessiner2RouesCasVide [
 	vehic:=Vehicule new.
 	vehic nbMaxRoues:2.
 	visiteur:=VisiteurDraw new.
-	interface:=VehicInterface new.
 	
 	vehic accept:visiteur.
 ]

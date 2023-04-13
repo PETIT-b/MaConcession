@@ -7,6 +7,11 @@ Class {
 	#category : #MaConcession
 }
 
+{ #category : #accessing }
+VisiteurDraw >> moteur [
+	^vehicule moteur.
+]
+
 { #category : #'as yet unclassified' }
 VisiteurDraw >> nbMaxRoues [
 	^vehicule nbMaxRoues
@@ -59,13 +64,10 @@ VisiteurDraw >> visitVehicule: vehi [
 	vehi prix
 		ifNil: [ Transcript show: 'Pas de prix spécifié' ]
 		ifNotNil: [ Transcript show: vehi prix].
-	"1 to:(vehi roues size) do:[:i |(vehi roues at:i) accept:self]"
 	
-	Transcript cr.
-	vehi moteur
-		ifNil: [ Transcript show: 'Pas de moteur' ]
-		ifNotNil: [ vehi moteur accept: self ].
+	"accept effectué quand on clique sur le moteur"
+	
 	
 	"accept effectué quand on clique sur une Roue"
-	"vehi roues do: [ :uneRoue | uneRoue accept: self ]"
+	
 ]

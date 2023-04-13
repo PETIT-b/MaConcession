@@ -1,6 +1,6 @@
 Class {
 	#name : #MorphOuvreMorph,
-	#superclass : #Morph,
+	#superclass : #ImageMorph,
 	#instVars : [
 		'element',
 		'visiteur'
