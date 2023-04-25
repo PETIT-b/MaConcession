@@ -28,11 +28,6 @@ MorphOuvreMorph >> initialize [
 MorphOuvreMorph >> mouseDown: anEvent [
 	 "self ouvrirMorphRoue" "ancienne version"
 	"visiteur visitRoue:(visiteur roues at:pos)" "ancienne version"
-	self ouvrirMorph 
-]
-
-{ #category : #'as yet unclassified' }
-MorphOuvreMorph >> ouvrirMorph [
 	"visiteur roues at:pos accept" "ancienne version"
 	element accept:visiteur
 ]

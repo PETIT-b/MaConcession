@@ -18,6 +18,19 @@ VehicInterface >> canvas [
 ]
 
 { #category : #'as yet unclassified' }
+VehicInterface >> canvasDraw [
+
+morphC:=canvas form asMorph .
+	fenetre  addMorph: (
+		morphC position: (
+			(width/2)-(morphC width/2)"centrer horizontalement"
+		)@(
+			(height/2)-(morphC height/2) "centrer verticalement"
+		)
+	) .
+]
+
+{ #category : #'as yet unclassified' }
 VehicInterface >> dessiner2Roues:roues [	
 	| mOR pos ima |
 	"MorphOuvreRoue"
@@ -138,14 +151,15 @@ VehicInterface >> dessiner4Roues:roues [
 
 { #category : #'as yet unclassified' }
 VehicInterface >> dessinerMoteur:moteur [	
-	| mOR  |
+	| mOR imageForm |
 	"MorphOuvreRoue"
 	
 	moteur
 	ifNotNil:[
-		mOR:=MorphOuvreMorph withForm: (ImageReadWriter formFromFileNamed:
-'/home/fireboy/Images/Lien vers moteur.png') .
-	mOR color:Color red ; visiteur:visiteur;element:moteur.
+		imageForm := ImageReadWriter formFromFileNamed: '/home/fireboy/Images/Lien vers moteur.png'.
+		mOR:=MorphOuvreMorph withForm: (imageForm scaledToSize: (morphC width-4)@400) .
+		mOR extent:10@10.
+	mOR  visiteur:visiteur;element:moteur.
 	fenetre addMorph:(
 		mOR position: (
 			(width/2)-(mOR width/2)"centre"
@@ -161,16 +175,10 @@ VehicInterface >> dessinerMoteur:moteur [
 	
 ]
 
-{ #category : #'as yet unclassified' }
-VehicInterface >> dessinerRoues:roues [
-	"faire des tests à partir de visiteur nbMaxRoue pour connaître le type du véhicule"
-	(visiteur nbMaxRoues=2)
-	ifTrue: [
-		self dessiner2Roues:roues
-		]
-	ifFalse: [
-		self dessiner4Roues:roues
-		]
+{ #category : #accessing }
+VehicInterface >> fenetre [
+
+	^ fenetre
 ]
 
 { #category : #'as yet unclassified' }
@@ -203,34 +211,56 @@ VehicInterface >> initialize [
 	height:=400.
 ]
 
-{ #category : #abstract }
-VehicInterface >> ouvrirFenetre [
-	"Fonction qui appelle les fonctions pour dessiner le morph central  et pour dessiner les roues"	
-	"remarque : il faut que l'attribut visiteur soit initialisé"
-	
-	"creer fenetre"
-	fenetre := (SystemWindow labelled:'Véhicule') model: nil.
-	fenetre extent:  width@height .
-	
-	"Partie centrale"
-	"creer morph central a partir du canvas"
-	self genererCanvas.
-	morphC:=canvas form asMorph .
-	fenetre  addMorph: (
-		morphC position: (
-			(width/2)-(morphC width/2)"centrer horizontalement"
-		)@(
-			(height/2)-(morphC height/2) "centrer verticalement"
-		)
-	) .
-	
-	self dessinerRoues:(visiteur roues).
-	self dessinerMoteur:(visiteur moteur).
-	fenetre openInWorld
-	
+{ #category : #accessing }
+VehicInterface >> morphC [
+	^ morphC
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> viderFenetre [
+	"fonction supprimant tous les morphs non verrouilles"
+			
+	fenetre submorphs select: [ :m | 
+    m class = ImageMorph or: m class = MorphOuvreMorph "and: [ 
+    m isLocked not ]" ] 
+	thenDo: [ :m | m delete ]
 ]
 
 { #category : #accessing }
 VehicInterface >> visiteur: aVisiteurDraw [
 	visiteur := aVisiteurDraw
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> wheelsDraw:roues [
+	"faire des tests à partir de visiteur nbMaxRoue pour connaître le type du véhicule"
+	(visiteur nbMaxRoues=2)
+	ifTrue: [
+		self dessiner2Roues:roues
+		]
+	ifFalse: [
+		self dessiner4Roues:roues
+		]
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> windowCreate [
+	"creer fenetre"
+	fenetre := (SystemWindow labelled:'Véhicule') model: nil.
+	fenetre extent:  width@height .
+	
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> windowLoad [
+	self viderFenetre .
+	"Partie centrale"
+	"creer morph central a partir du canvas"
+	self genererCanvas.
+	self canvasDraw.
+	
+	self wheelsDraw:(visiteur roues).
+	self dessinerMoteur:(visiteur moteur).
+	
+fenetre openInWorld .
 ]

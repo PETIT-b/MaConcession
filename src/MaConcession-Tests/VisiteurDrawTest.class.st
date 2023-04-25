@@ -5,6 +5,28 @@ Class {
 }
 
 { #category : #tests }
+VisiteurDrawTest >> testVisitDelay [
+	
+	| vehi r1 r2 mot visi |
+	vehi:=Vehicule new.
+r1:=Roue new.
+r2:=Roue new.
+mot:=Moteur new.
+visi:=VisiteurDraw new.
+vehi nbMaxRoues:4; addRoue: r1;addRoue:r2;moteur:mot; accept:visi.
+[(Delay forSeconds: 3) wait.
+"(visi interface fenetre) removeMorph:  (visi interface morphC)."
+"visi interface fenetre submorphs select: [ :m | 
+    (m class = ImageMorph or: m class = MorphOuvreMorph ) and: [ 
+    m isLocked not ] ] 
+thenDo: [ :m | m delete ]"
+
+vehi addRoue: r1;addRoue:r2;moteur:nil; accept:visi
+
+] fork
+]
+
+{ #category : #tests }
 VisiteurDrawTest >> testVisitMoteur [
 	| visiteurD m1 m2 |
 	visiteurD:=VisiteurDraw new.
