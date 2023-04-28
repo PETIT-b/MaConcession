@@ -56,23 +56,24 @@ VisiteurDraw >> visitRoue: r [
 VisiteurDraw >> visitVehicule: vehi [
 "créer une interface, envoyer sa référence à l'interface pour que l'inteface puisse appeler les méthodes qui visent chaque élément du véhicule"
 
-	
+"TO DO : rafraichir la fenêtre au lieu de la supprimer et recreer"
 	vehicule:=vehi.
 	
 	interface
 	ifNotNil:[
-	(interface fenetre) delete.
-	interface fenetre=nil.
-	interface visiteur:self; windowCreate
+		"remove/delete Morphs of the window"
+		interface viderFenetre
 	]
 	ifNil:[
 		interface:=VehicInterface new.
-		interface visiteur:self; windowCreate
+		interface visiteur:self; windowCreate.
+		self currentWorld addMorph:(interface fenetre ).
+		"interface fenetre openInWorld ."
 		].
-	"supprimer les morphs"
-	"ifNotNil:[interface viderFenetre]."
+
 	
 	"recreer et ajouter les morphs à la fenetre"
+	"create and add Morph to the window"
 	interface windowLoad.
 	
 	Transcript cr.
@@ -90,5 +91,5 @@ VisiteurDraw >> visitVehicule: vehi [
 	
 	"accept effectué quand on clique sur une Roue"
 	
-	"TO DO : rafraichir la fenêtre au lieu de la supprimer et recreer"
+	
 ]

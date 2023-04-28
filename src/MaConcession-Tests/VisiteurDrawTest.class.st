@@ -6,7 +6,31 @@ Class {
 
 { #category : #tests }
 VisiteurDrawTest >> testVisitDelay [
-	
+"TO DO : make Tests with delay that work not only in Playground"
+	| vehi r1 r2 r3 r4 mot visi |
+	vehi:=Vehicule new.
+r1:=Roue new. r1 diametre: 110.
+r2:=Roue new. r2 diametre: 110.
+r3:=Roue new. r3 diametre: 130.
+r4:=Roue new. r4 diametre: 130.
+mot:=Moteur new.
+visi:=VisiteurDraw new.
+vehi nbMaxRoues:4; addRoue: r1;addRoue:r2;moteur:mot; accept:visi.
+
+[(Delay forSeconds: 3) wait.
+vehi nbMaxRoues:4; remRoue; remRoue; accept:visi.
+
+
+(Delay forSeconds: 3) wait.
+vehi addRoue: r1;addRoue:r2; addRoue:r3;addRoue:r4;moteur:mot; accept:visi.
+
+
+] fork
+]
+
+{ #category : #tests }
+VisiteurDrawTest >> testVisitDelayDelete [
+"TO DO : make Tests with delay that work not only in Playground"
 	| vehi r1 r2 mot visi |
 	vehi:=Vehicule new.
 r1:=Roue new.
@@ -15,13 +39,15 @@ mot:=Moteur new.
 visi:=VisiteurDraw new.
 vehi nbMaxRoues:4; addRoue: r1;addRoue:r2;moteur:mot; accept:visi.
 [(Delay forSeconds: 3) wait.
-"(visi interface fenetre) removeMorph:  (visi interface morphC)."
-"visi interface fenetre submorphs select: [ :m | 
+(visi interface fenetre) removeMorph:  (visi interface morphC).
+visi interface fenetre submorphs select: [ :m | 
     (m class = ImageMorph or: m class = MorphOuvreMorph ) and: [ 
     m isLocked not ] ] 
-thenDo: [ :m | m delete ]"
-
+thenDo: [ :m | m delete ].
+"
+(Delay forSeconds: 3) wait.
 vehi addRoue: r1;addRoue:r2;moteur:nil; accept:visi
+"
 
 ] fork
 ]

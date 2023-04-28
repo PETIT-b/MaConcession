@@ -260,7 +260,11 @@ VehicInterface >> windowLoad [
 	self canvasDraw.
 	
 	self wheelsDraw:(visiteur roues).
-	self dessinerMoteur:(visiteur moteur).
+	self dessinerMoteur:(visiteur moteur)
+]
+
+{ #category : #'as yet unclassified' }
+VehicInterface >> windowReload [
+			
 	
-fenetre openInWorld .
 ]
