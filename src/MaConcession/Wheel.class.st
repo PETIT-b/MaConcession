@@ -1,5 +1,5 @@
 Class {
-	#name : #Roue,
+	#name : #Wheel,
 	#superclass : #Object,
 	#instVars : [
 		'diametre',
@@ -9,24 +9,24 @@ Class {
 }
 
 { #category : #visiting }
-Roue >> accept: visiteur [			
-	visiteur visitRoue:self
+Wheel >> accept: visiteur [			
+	visiteur visitWheel:self
 ]
 
 { #category : #accessing }
-Roue >> diametre [
+Wheel >> diametre [
 
 	^ diametre
 ]
 
 { #category : #accessing }
-Roue >> diametre: valeur [
+Wheel >> diametre: valeur [
 
 	diametre := valeur
 ]
 
 { #category : #comparing }
-Roue >> equals: otherRoue [
+Wheel >> equals: otherRoue [
 	(diametre=otherRoue diametre )
 		ifTrue:
 		[(prix=otherRoue prix)
@@ -36,20 +36,20 @@ Roue >> equals: otherRoue [
 ]
 
 { #category : #initialization }
-Roue >> initialize [ 
+Wheel >> initialize [ 
 	super initialize.
 	diametre:=nil.
 	prix:=nil
 ]
 
 { #category : #accessing }
-Roue >> prix [
+Wheel >> prix [
 
 	^ prix
 ]
 
 { #category : #accessing }
-Roue >> prix: anObject [
+Wheel >> prix: anObject [
 
 	prix := anObject
 ]

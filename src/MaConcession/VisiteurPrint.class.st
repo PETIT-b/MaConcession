@@ -5,23 +5,15 @@ Class {
 }
 
 { #category : #visiting }
-VisiteurPrint >> visitMoteur: m [
+VisiteurPrint >> visitEngine: m [
 	Transcript show:'Moteur :' ;cr;
-	show: 'Cylindrée : '; show: m cylindree;cr;
+	show: 'Cylindrée : '; show: m displacement;cr;
 	show: 'Puissance : '; show: m puissance;cr;
 	show: 'Prix : '; show: m prix
 ]
 
 { #category : #visiting }
-VisiteurPrint >> visitRoue: r [
-
-	Transcript show:'Roue :'; cr;
-	show:'Prix : '; show: r prix;cr;
-	show:'Diamètre : '; show: r diametre;cr
-]
-
-{ #category : #visiting }
-VisiteurPrint >> visitVehicule: vehi [
+VisiteurPrint >> visitVehicle: vehi [
 	Transcript show:'Vehicule :';cr.
 	
 	vehi couleur
@@ -35,10 +27,18 @@ VisiteurPrint >> visitVehicule: vehi [
 	"1 to:(vehi roues size) do:[:i |(vehi roues at:i) accept:self]"
 	
 	Transcript cr.
-	vehi moteur
+	vehi engine
 		ifNil: [ Transcript show: 'Pas de moteur' ]
-		ifNotNil: [ vehi moteur accept: self ].
+		ifNotNil: [ vehi engine accept: self ].
 	
 	Transcript cr.
 	vehi roues do: [ :uneRoue | uneRoue accept: self ]
+]
+
+{ #category : #visiting }
+VisiteurPrint >> visitWheel: r [
+
+	Transcript show:'Roue :'; cr;
+	show:'Prix : '; show: r prix;cr;
+	show:'Diamètre : '; show: r diametre;cr
 ]

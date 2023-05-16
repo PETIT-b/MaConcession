@@ -5,29 +5,29 @@ Class {
 }
 
 { #category : #visiting }
-Visiteur >> visitMoteur: m [
-	m cylindree.
+Visiteur >> visitEngine: m [
+	m displacement.
 	m puissance.
 	m prix
 ]
 
 { #category : #visiting }
-Visiteur >> visitRoue: r [
-	r diametre.
-	r prix
-]
-
-{ #category : #visiting }
-Visiteur >> visitVehicule:  vehi [
-	vehi moteur accept: self.
+Visiteur >> visitVehicle:  vehi [
+	vehi engine accept: self.
 	vehi couleur.
 	vehi prix.
 	1 to:(vehi roues size) do:[:i |(vehi roues at:i) accept:self]
 ]
 
 { #category : #visiting }
+Visiteur >> visitWheel: r [
+	r diametre.
+	r prix
+]
+
+{ #category : #visiting }
 Visiteur >> visiter: vehi [
-	vehi moteur accept: self.
+	vehi engine accept: self.
 	vehi couleur.
 	vehi prix.
 	1 to:(vehi roues size) do:[:i |(vehi roues at:i) accept:self]

@@ -1,5 +1,5 @@
 Class {
-	#name : #Vehicule,
+	#name : #Vehicle,
 	#superclass : #Object,
 	#instVars : [
 		'roues',
@@ -12,29 +12,41 @@ Class {
 }
 
 { #category : #visiting }
-Vehicule >> accept: visiteur [			
-	visiteur visitVehicule:self
+Vehicle >> accept: visiteur [			
+	visiteur visitVehicle:self
 ]
 
 { #category : #adding }
-Vehicule >> addRoue: uneRoue [
+Vehicle >> addWheel: uneRoue [
 	roues add: uneRoue.
 ]
 
 { #category : #accessing }
-Vehicule >> couleur [
+Vehicle >> couleur [
 
 	^ couleur
 ]
 
 { #category : #accessing }
-Vehicule >> couleur: anObject [
+Vehicle >> couleur: anObject [
 
 	couleur := anObject
 ]
 
+{ #category : #accessing }
+Vehicle >> engine [
+
+	^ moteur
+]
+
+{ #category : #accessing }
+Vehicle >> engine: anObject [
+
+	moteur := anObject
+]
+
 { #category : #initialization }
-Vehicule >> initialize [ 
+Vehicle >> initialize [ 
 	super initialize.
 	roues:= OrderedCollection new.
 	nbMaxRoues := 4.
@@ -42,41 +54,29 @@ Vehicule >> initialize [
 ]
 
 { #category : #accessing }
-Vehicule >> moteur [
-
-	^ moteur
-]
-
-{ #category : #accessing }
-Vehicule >> moteur: anObject [
-
-	moteur := anObject
-]
-
-{ #category : #accessing }
-Vehicule >> nbMaxRoues [
+Vehicle >> nbMaxWheels [
 	^ nbMaxRoues
 ]
 
 { #category : #accessing }
-Vehicule >> nbMaxRoues: anInteger [ 
+Vehicle >> nbMaxWheels: anInteger [ 
 	nbMaxRoues := anInteger
 ]
 
 { #category : #accessing }
-Vehicule >> prix [
+Vehicle >> prix [
 
 	^ prix
 ]
 
 { #category : #accessing }
-Vehicule >> prix: anObject [
+Vehicle >> prix: anObject [
 
 	prix := anObject
 ]
 
-{ #category : #'as yet unclassified' }
-Vehicule >> remRoue [
+{ #category : #removing }
+Vehicle >> remWheel [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 	| r |		
@@ -85,13 +85,13 @@ Vehicule >> remRoue [
 ]
 
 { #category : #accessing }
-Vehicule >> roues [
+Vehicle >> roues [
 
 	^ roues
 ]
 
 { #category : #accessing }
-Vehicule >> roues: anObject [
+Vehicle >> roues: anObject [
 
 	roues := anObject
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #VisiteurDraw,
+	#name : #VisitorDraw,
 	#superclass : #Object,
 	#instVars : [
 		'vehicule',
@@ -9,33 +9,33 @@ Class {
 }
 
 { #category : #accessing }
-VisiteurDraw >> interface [
+VisitorDraw >> engine [
+	^vehicule engine.
+]
+
+{ #category : #accessing }
+VisitorDraw >> interface [
 
 	^ interface
 ]
 
-{ #category : #accessing }
-VisiteurDraw >> moteur [
-	^vehicule moteur.
-]
-
 { #category : #'as yet unclassified' }
-VisiteurDraw >> nbMaxRoues [
-	^vehicule nbMaxRoues
+VisitorDraw >> nbMaxWheels [
+	^vehicule nbMaxWheels
 ]
 
 { #category : #accessing }
-VisiteurDraw >> roues [
+VisitorDraw >> roues [
 	^(vehicule roues)
 ]
 
 { #category : #visiting }
-VisiteurDraw >> visitMoteur: m [
+VisitorDraw >> visitEngine: m [
 	
 	
 | morph text |
 	morph:=TextMorph new.
-	text:='Cylindrée : ', m cylindree asString,'
+	text:='Cylindrée : ', m displacement asString,'
 	Puissance : ', m puissance asString,'
 	Prix : ', m prix asString.
 	
@@ -43,17 +43,7 @@ VisiteurDraw >> visitMoteur: m [
 ]
 
 { #category : #visiting }
-VisiteurDraw >> visitRoue: r [
-	| morph text |
-	morph:=TextMorph new.
-	text:='Diametre : ', r diametre asString,'
-	Prix : ', r prix asString.
-	
-	morph contents:text;openInWindow 
-]
-
-{ #category : #visiting }
-VisiteurDraw >> visitVehicule: vehi [
+VisitorDraw >> visitVehicle: vehi [
 "créer une interface, envoyer sa référence à l'interface pour que l'inteface puisse appeler les méthodes qui visent chaque élément du véhicule"
 
 "TO DO : rafraichir la fenêtre au lieu de la supprimer et recreer"
@@ -62,7 +52,7 @@ VisiteurDraw >> visitVehicule: vehi [
 	interface
 	ifNotNil:[
 		"remove/delete Morphs of the window"
-		interface viderFenetre
+		interface windowClear
 	]
 	ifNil:[
 		interface:=VehicInterface new.
@@ -76,20 +66,19 @@ VisiteurDraw >> visitVehicule: vehi [
 	"create and add Morph to the window"
 	interface windowLoad.
 	
-	Transcript cr.
-	vehi couleur
-		ifNil: [ Transcript show: 'Pas de Couleur spécifiée' ]
-		ifNotNil: [ Transcript show: vehi couleur].
-		
-	Transcript cr.
-	vehi prix
-		ifNil: [ Transcript show: 'Pas de prix spécifié' ]
-		ifNotNil: [ Transcript show: vehi prix].
+	"visitEngine is called when we click on the engine"
+	
+	"visitWheel is called when we click on a wheel"
 	
 	
-	"accept effectué quand on clique sur le moteur"
+]
+
+{ #category : #visiting }
+VisitorDraw >> visitWheel: r [
+	| morph text |
+	morph:=TextMorph new.
+	text:='Diametre : ', r diametre asString,'
+	Prix : ', r prix asString.
 	
-	"accept effectué quand on clique sur une Roue"
-	
-	
+	morph contents:text;openInWindow 
 ]

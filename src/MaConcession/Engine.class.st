@@ -1,8 +1,8 @@
 Class {
-	#name : #Moteur,
+	#name : #Engine,
 	#superclass : #Object,
 	#instVars : [
-		'cylindree',
+		'displacement',
 		'puissance',
 		'prix'
 	],
@@ -10,25 +10,25 @@ Class {
 }
 
 { #category : #visiting }
-Moteur >> accept: visiteur [			
-	visiteur visitMoteur:self
+Engine >> accept: visiteur [			
+	visiteur visitEngine:self
 ]
 
 { #category : #accessing }
-Moteur >> cylindree [
+Engine >> displacement [
 
-	^ cylindree
+	^ displacement
 ]
 
 { #category : #accessing }
-Moteur >> cylindree: anObject [
+Engine >> displacement: anObject [
 
-	cylindree := anObject
+	displacement := anObject
 ]
 
 { #category : #comparing }
-Moteur >> equals: oM [
-	(cylindree=oM cylindree) ifFalse:[^ false].
+Engine >> equals: oM [
+	(displacement=oM displacement) ifFalse:[^ false].
 	(puissance=oM puissance) ifFalse:[^ false].
 	(prix=oM prix) ifFalse:[^ false].
 	"si tous les tests précédents sont vrais"
@@ -36,25 +36,25 @@ Moteur >> equals: oM [
 ]
 
 { #category : #accessing }
-Moteur >> prix [
+Engine >> prix [
 
 	^ prix
 ]
 
 { #category : #accessing }
-Moteur >> prix: anObject [
+Engine >> prix: anObject [
 
 	prix := anObject
 ]
 
 { #category : #accessing }
-Moteur >> puissance [
+Engine >> puissance [
 
 	^ puissance
 ]
 
 { #category : #accessing }
-Moteur >> puissance: anObject [
+Engine >> puissance: anObject [
 
 	puissance := anObject
 ]

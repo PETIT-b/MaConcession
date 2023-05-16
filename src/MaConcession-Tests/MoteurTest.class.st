@@ -15,11 +15,11 @@ MoteurTest >> initialize [
 { #category : #tests }
 MoteurTest >> testEquals [ 
 | m1 m2 |
-m1:=Moteur new. m1 cylindree: 1600;puissance:90;prix:1500.
-m2:=Moteur new. m2 cylindree: 1400;puissance:75;prix:750.
+m1:=Engine new. m1 displacement: 1600;puissance:90;prix:1500.
+m2:=Engine new. m2 displacement: 1400;puissance:75;prix:750.
 self deny:(m1 equals:m2).
 
-m2 cylindree: m1 cylindree.
+m2 displacement: m1 displacement.
 self deny:(m1 equals:m2).
 
 m2 puissance:m1 puissance.

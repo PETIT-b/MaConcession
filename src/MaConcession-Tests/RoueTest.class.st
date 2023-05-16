@@ -10,7 +10,7 @@ RoueTest >> testDiametrePrix [
 	"scope: class-variables  &  instance-variables"	
 			
 	| r |
-	r:=Roue new.
+	r:=Wheel new.
 	r diametre:30;prix:55.
 	self assert: (r diametre == 30).
 	self assert: (r prix == 55)
@@ -22,8 +22,8 @@ RoueTest >> testEquals [
 	"scope: class-variables  &  instance-variables"	
 			
 	| r1 r2 |
-	r1:= Roue new.
-	r2:= Roue new.
+	r1:= Wheel new.
+	r2:= Wheel new.
 	r1 diametre:22; prix:26.
 	r2 diametre:22; prix:26.
 	self assert: (r1 equals:r2).
@@ -37,6 +37,6 @@ RoueTest >> testEquals [
 { #category : #initialization }
 RoueTest >> testInitialize [
 	| c |
-	c:= Roue new.
+	c:= Wheel new.
 	self deny:(c==nil)
 ]

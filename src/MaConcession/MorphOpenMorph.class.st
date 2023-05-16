@@ -1,5 +1,5 @@
 Class {
-	#name : #MorphOuvreMorph,
+	#name : #MorphOpenMorph,
 	#superclass : #ImageMorph,
 	#instVars : [
 		'element',
@@ -9,23 +9,23 @@ Class {
 }
 
 { #category : #accessing }
-MorphOuvreMorph >> element:aNobject [
+MorphOpenMorph >> element:aNobject [
 element:=aNobject
 ]
 
 { #category : #'event handling' }
-MorphOuvreMorph >> handlesMouseDown: anEvent [
+MorphOpenMorph >> handlesMouseDown: anEvent [
 "Declaring that Morph will react to mouse clicks"
     ^ true
 ]
 
 { #category : #initialization }
-MorphOuvreMorph >> initialize [ 
+MorphOpenMorph >> initialize [ 
 	super initialize .
 ]
 
 { #category : #initialization }
-MorphOuvreMorph >> mouseDown: anEvent [
+MorphOpenMorph >> mouseDown: anEvent [
 	 "self ouvrirMorphRoue" "ancienne version"
 	"visiteur visitRoue:(visiteur roues at:pos)" "ancienne version"
 	"visiteur roues at:pos accept" "ancienne version"
@@ -33,6 +33,6 @@ MorphOuvreMorph >> mouseDown: anEvent [
 ]
 
 { #category : #accessing }
-MorphOuvreMorph >> visiteur:aVisieur [
+MorphOpenMorph >> visiteur:aVisieur [
 	visiteur:=aVisieur
 ]
